@@ -12,7 +12,7 @@ const headers = {
   Authorization: token
 };
 
-const contacts = [
+let contacts = [
   {
     id: "karen",
     name: "Karen Isgrigg",
@@ -40,13 +40,16 @@ export const getAll_fetch = () =>
 
 export const getAll = () =>
   new Promise((resolve, reject) => {
-    resolve(contacts);
+    return resolve(contacts);
   });
 
 export const remove_fetch = contact =>
   fetch(`${api}/contacts/${contact.id}`, { method: "DELETE", headers })
     .then(res => res.json())
     .then(data => data.contact);
+
+export const remove = contact =>
+  new Promise((resolve, renew) => resolve(contact));
 
 export const create_fetch = body =>
   fetch(`${api}/contacts`, {

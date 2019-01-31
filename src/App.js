@@ -12,9 +12,15 @@ class App extends Component {
     });
   };
   removeContact = contact => {
-    this.setState(currentState => ({
-      contacts: currentState.contacts.filter(c => c.id !== contact.id)
-    }));
+    // this.setState(currentState => ({
+    //   contacts: currentState.contacts.filter(c => c.id !== contact.id)
+    // }));
+    // ContactsAPI.remove(contact);
+    ContactsAPI.remove(contact).then(contact => {
+      this.setState(prevState => ({
+        contacts: prevState.contacts.filter(c => c.id !== contact.id)
+      }));
+    });
   };
   render() {
     return (
