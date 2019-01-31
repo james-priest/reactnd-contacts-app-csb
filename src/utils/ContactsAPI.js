@@ -49,7 +49,8 @@ export const remove_fetch = contact =>
     .then(data => data.contact);
 
 export const remove = contact =>
-  new Promise((resolve, renew) => resolve(contact));
+  new Promise((resolve, reject) => resolve(contact));
+// new Promise((resolve, reject) => reject());
 
 export const create_fetch = body =>
   fetch(`${api}/contacts`, {

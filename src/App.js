@@ -16,11 +16,13 @@ class App extends Component {
     //   contacts: currentState.contacts.filter(c => c.id !== contact.id)
     // }));
     // ContactsAPI.remove(contact);
-    ContactsAPI.remove(contact).then(contact => {
-      this.setState(prevState => ({
-        contacts: prevState.contacts.filter(c => c.id !== contact.id)
-      }));
-    });
+    ContactsAPI.remove(contact)
+      .then(contact => {
+        this.setState(prevState => ({
+          contacts: prevState.contacts.filter(c => c.id !== contact.id)
+        }));
+      })
+      .catch(error => console.log("DB error"));
   };
   render() {
     return (
