@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class ListContacts extends Component {
   static propTypes = {
@@ -11,10 +11,11 @@ class ListContacts extends Component {
         avatarURL: PropTypes.string.isRequired
       })
     ),
-    onDeleteContact: PropTypes.func.isRequired
+    onDeleteContact: PropTypes.func.isRequired,
+    onNavigate: PropTypes.func.isRequired
   };
   state = {
-    query: ''
+    query: ""
   };
   updateQuery = e => {
     const query = e.target.value;
@@ -24,12 +25,12 @@ class ListContacts extends Component {
   };
   clearQuery = () => {
     this.setState(() => ({
-      query: ''
+      query: ""
     }));
   };
   render() {
     const { query } = this.state;
-    const { contacts, onDeleteContact } = this.props;
+    const { contacts, onDeleteContact, onNavigate } = this.props;
 
     // const showingContacts = contacts.filter(
     //   contact => contact.name.toLowerCase().indexOf(query.toLowerCase()) > -1
@@ -57,6 +58,13 @@ class ListContacts extends Component {
             value={query}
             onChange={this.updateQuery}
           />
+          <a
+            href="#create"
+            onClick={() => onNavigate()}
+            className="add-contact"
+          >
+            Add Contact
+          </a>
         </div>
         {showingContacts.length !== contacts.length && (
           <div className="showing-contacts">
