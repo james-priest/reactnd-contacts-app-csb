@@ -39,7 +39,6 @@ class ListContacts extends Component {
             contact.name.toLowerCase().includes(query.toLowerCase())
           );
 
-    // console.log('showingContacts', showingContacts);
     return (
       <div className="list-contacts">
         <div className="list-contacts-top">
