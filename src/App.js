@@ -22,7 +22,7 @@ class App extends Component {
       })
       .catch(error => console.log("DB error"));
   };
-  addContact = contact => {
+  createContact = contact => {
     console.log("Contact added", contact);
     return new Promise((resolve, reject) => resolve());
   };
@@ -41,7 +41,7 @@ class App extends Component {
         />
         <Route
           path="/create"
-          render={() => <CreateContact onAddContact={this.addContact} />}
+          render={() => <CreateContact onCreateContact={this.createContact} />}
         />
       </div>
     );
