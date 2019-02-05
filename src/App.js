@@ -23,8 +23,12 @@ class App extends Component {
       .catch(error => console.log("DB error"));
   };
   createContact = contact => {
-    console.log("Contact added", contact);
-    return new Promise((resolve, reject) => resolve());
+    // console.log("contact first", contact);
+    ContactsAPI.create(contact).then(contact => {
+      this.setState(prevState => ({
+        contacts: prevState.contacts.concat(contact)
+      }));
+    });
   };
   render() {
     return (
@@ -41,7 +45,14 @@ class App extends Component {
         />
         <Route
           path="/create"
-          render={() => <CreateContact onCreateContact={this.createContact} />}
+          render={({ history }) => (
+            <CreateContact
+              onCreateContact={contact => {
+                this.createContact(contact);
+                history.push("/");
+              }}
+            />
+          )}
         />
       </div>
     );

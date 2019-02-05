@@ -61,3 +61,12 @@ export const create_fetch = body =>
     },
     body: JSON.stringify(body)
   }).then(res => res.json());
+
+export const create = contact =>
+  new Promise((resolve, reject) => {
+    const id = Math.random()
+      .toString(36)
+      .substr(-8);
+    contact.id = id;
+    resolve(contact);
+  });
